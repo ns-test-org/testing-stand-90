@@ -64,7 +64,7 @@ export default function TodoApp() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">Todo App</h1>
-          <p className="text-gray-600">Stay organized and get things done</p>
+          <p className="text-gray-600">Stay organized and get things done!</p>
         </div>
 
         {/* Add Todo Form */}
@@ -75,7 +75,7 @@ export default function TodoApp() {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && addTodo()}
-              placeholder="Add a new task..."
+              placeholder="What needs to be done?"
               className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             <button
@@ -99,7 +99,7 @@ export default function TodoApp() {
               <div
                 className="bg-green-500 h-2 rounded-full transition-all duration-300"
                 style={{ width: totalCount > 0 ? `${(completedCount / totalCount) * 100}%` : '0%' }}
-              />
+              ></div>
             </div>
           </div>
         )}
@@ -108,15 +108,11 @@ export default function TodoApp() {
         <div className="space-y-3">
           {todos.length === 0 ? (
             <div className="bg-white rounded-lg shadow-md p-8 text-center">
-              <div className="text-gray-400 mb-2">
-                <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-              </div>
-              <p className="text-gray-500">No tasks yet. Add one above to get started!</p>
+              <div className="text-gray-400 text-lg mb-2">📝</div>
+              <p className="text-gray-500">No todos yet. Add one above to get started!</p>
             </div>
           ) : (
-            todos.map(todo => (
+            todos.map((todo) => (
               <div
                 key={todo.id}
                 className={`bg-white rounded-lg shadow-md p-4 transition-all duration-200 ${
@@ -134,8 +130,8 @@ export default function TodoApp() {
                     }`}
                   >
                     {todo.completed && (
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     )}
                   </button>
@@ -171,7 +167,9 @@ export default function TodoApp() {
                     ) : (
                       <span
                         className={`${
-                          todo.completed ? 'line-through text-gray-500' : 'text-gray-800'
+                          todo.completed
+                            ? 'line-through text-gray-500'
+                            : 'text-gray-800'
                         }`}
                       >
                         {todo.text}
@@ -184,7 +182,7 @@ export default function TodoApp() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => startEdit(todo.id, todo.text)}
-                        className="p-2 text-gray-400 hover:text-blue-500 transition-colors"
+                        className="p-2 text-gray-500 hover:text-blue-500 transition-colors"
                         title="Edit"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -193,7 +191,7 @@ export default function TodoApp() {
                       </button>
                       <button
                         onClick={() => deleteTodo(todo.id)}
-                        className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                        className="p-2 text-gray-500 hover:text-red-500 transition-colors"
                         title="Delete"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -211,4 +209,3 @@ export default function TodoApp() {
     </div>
   );
 }
-
